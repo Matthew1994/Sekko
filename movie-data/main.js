@@ -2,8 +2,9 @@ var Movie = require('./movie');
 
 var movie = new Movie();
 
-console.log(movie.getData('http://film.spider.com.cn/guangzh-film--kb--/'));
+movie.getData('http://film.spider.com.cn/guangzh-film--aq--/', callback);
 
-setTimeout(function() {
-	console.log(movie.data);
-}, 10000);
+
+function callback(data) {
+	console.log(data);
+}

@@ -31,7 +31,7 @@ var option = {
 
 module.exports = function() {
 	this.data = [];
-	this.getData = function(url) {
+	this.getData = function(url, callback) {
 		var that = this;
 		request(url, function(err, response, body) {
 			if (err) {
@@ -58,7 +58,7 @@ module.exports = function() {
 					info['actors'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').text().replace(/[\r\n\t ]/g, '');
 					that.data.push(info);
 				});
-				return that.data;
+				callback(that.data);
 			}
 			return;
 		});
