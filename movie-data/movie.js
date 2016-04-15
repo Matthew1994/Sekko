@@ -36,6 +36,7 @@ module.exports = function() {
 		request(url, function(err, response, body) {
 			if (err) {
 				console.log('error:'+err+' when visit '+requestUrl);
+				return;
 			}
 			if (response.statusCode == 200) {
 				var $ = cheerio.load(body);
@@ -57,7 +58,9 @@ module.exports = function() {
 					info['actors'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').text().replace(/[\r\n\t ]/g, '');
 					that.data.push(info);
 				});
+				return that.data;
 			}
+			return;
 		});
 	}
 }
