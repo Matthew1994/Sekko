@@ -30,17 +30,21 @@ var option = {
 
 
 module.exports = function() {
-	this.data = [];
+	this.data = {
+		state:false,
+		movies:[]
+	};
 	this.getData = function(url, callback) {
 		var that = this;
 		request(url, function(err, response, body) {
 			if (err) {
-				console.log('error:'+err+' when visit '+requestUrl);
+				console.log('error:'+err+' when visit '+url);
 				return;
 			}
+
 			if (response.statusCode == 200) {
+				that.data.state = true;
 				var $ = cheerio.load(body);
-				//console.log(body);
 				$('.res_cinema > .res_movie_in').each(function(index, ele) {
 					var info = {};
 					var ele = $(ele);
@@ -56,11 +60,13 @@ module.exports = function() {
 					});
 					info['time-language'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').prev()['0'].prev['data'].replace(/[\r\n\t ]/g, '');
 					info['actors'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').text().replace(/[\r\n\t ]/g, '');
-					that.data.push(info);
+					that.data.movies.push(info);
 				});
-				callback(that.data);
+				
+			} else {
+				console.error('Error code:' + response.statusCode);
 			}
-			return;
+			callback(that.data);
 		});
 	}
 }
