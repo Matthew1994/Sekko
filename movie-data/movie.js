@@ -51,14 +51,16 @@ module.exports = function() {
 					
 					info['img'] = ele.find('.res_movie_pic img').attr('src');
 					info['name'] = ele.find('.res_movie_text .cy_res_title a').attr('title');
-					info['on-Time'] = ele.find('.res_movie_text .fs9.ml5').text().replace(/[\[\]]/g, '');
+					info['url'] = ele.find('.res_movie_text .cy_res_title a').attr('href');
+					info['onTime'] = ele.find('.res_movie_text .fs9.ml5').text().replace(/[\[\]]/g, '');
 					info['score'] = ele.find('.res_movie_text .res_movie_text_in:first-child .redfc').text();
 					info['description'] = ele.find('.res_movie_text .res_movie_text_in .res_movie_ms').text();
 					ele.find('.res_movie_text .res_movie_text_in.mt7 a').each(function(index, ele) {
 						if (!info['type']) info['type'] = [];
 						info['type'].push($(ele).text());
 					});
-					info['time-language'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').prev()['0'].prev['data'].replace(/[\r\n\t ]/g, '');
+					info['type'] = info['type'].toString();
+					info['timeAndLanguage'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').prev()['0'].prev['data'].replace(/[\r\n\t ]/g, '');
 					info['actors'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').text().replace(/[\r\n\t ]/g, '');
 					that.data.movies.push(info);
 				});
