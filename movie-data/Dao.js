@@ -6,6 +6,16 @@ var connection = DB.createConnection({
     password: "123456",
     database: 'sekko',
 });
+var DEFAULT = {
+        	'img': 'http://img4.duitang.com/uploads/blog/201407/11/20140711232938_Wk55X.gif', 
+        	'name': undefined,
+        	'on-Time': '未知',
+        	'score': ,
+        	'description': '暂无',
+        	'type': '暂无',
+        	'time-language': '暂无',
+        	'actors':　'暂无'
+        };
 /*
 Table:movie
 +---------------+-------------+------+-----+---------+----------------+
@@ -41,16 +51,17 @@ function movieDB() {
     };
     
     this.insertMovie = function(movie, callback) {
-    	
         var movieAddSql = 'INSERT INTO movie(name,img,on_time,score,description,time_language,type,stars) VALUES(?,?,?,?,?,?,?,?)';
         var movieParamList = ['img', 'name', 'on-Time', 'score', 'description', 'type', 'time-language', 'actors'];
         var movieAddSqlParams = [];
-        
-        //需要对传入的movie对象做预处理
-        // ..........
+
         //生成唯一ID
         movieParamList.forEach(function(ele) {
-            movieAddSqlParams.push(movie[ele]);
+            //需要对传入的movie对象做预处理
+            if (!movie[ele]) {
+            	movie[ele] = DEFAULT[ele];
+            }
+            movieAddSqlParams.push(movie[ele].toString());
         });
         connection.query(movieAddSql, movieAddSqlParams, function(err, result) {
             if (err) {
@@ -59,8 +70,7 @@ function movieDB() {
             }
 
             console.log('--------------------------INSERT----------------------------');
-            console.log('INSERT ID:',result.insertId);        
-            //console.log('INSERT ID:', result);
+            console.log('INSERT ID:',result.insertId);
             console.log('------------------------------------------------------------\n\n');
         });
     };
@@ -72,24 +82,3 @@ function movieDB() {
 
     };
 }
-
-
-/*
-mc.query('use iSysu', function(err, res, fields) {
-	if (!err) {
-		console.log(res);
-		console.log(fields);
-	} else {
-		console.log('[ Query Error ]' + err);
-	}
-});
-
-mc.query('select * from play', function(err, res, fields) {
-	if (!err) {
-		console.log(res);
-		console.log(fields);
-	} else {
-		console.log('[ Query Error ]' + err);
-	}
-});
-*/
