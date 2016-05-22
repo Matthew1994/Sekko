@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var mysql = require('mysql');
 var crypto = require("crypto");
+
 function md5(data) {
     var Buffer = require("buffer").Buffer;
     var buf = new Buffer(data);
@@ -17,18 +18,6 @@ var sequelize = new Sequelize('sekko', 'root', '123456', {
         idle: 10000
     },
 });
-
-var test = {
-    img: 'http://pic.spider.com.cn/pic//filmpic/jdt/1461133757470_mobile2.jpg',
-    name: '分歧者3：忠诚世界',
-    url: 'http://film.spider.com.cn/film-201603477707/3',
-    onTime: '已热映2天',
-    score: '8.6',
-    description: '忠诚抉择',
-    type: '爱情,动作,科幻,冒险',
-    timeAndLanguage: '片长/语言：121分钟/英语',
-    actors: '导演/演员：罗伯特·斯文克/谢琳·伍德蕾/提奥·詹姆斯/迈尔斯·特勒/安塞尔·艾尔高特/娜奥米·沃茨/杰夫·丹尼尔斯/比尔·斯卡斯加德'
-};
 
 /*
 定义表
@@ -48,7 +37,6 @@ var test = {
 | createdAt       | datetime     | NO   |     | NULL    |                |
 | updatedAt       | datetime     | NO   |     | NULL    |                |
 +-----------------+--------------+------+-----+---------+----------------+
-
 */
 var movie = sequelize.define('movie', {
     img: {
@@ -99,14 +87,30 @@ var movie = sequelize.define('movie', {
 //创建表
 /*
 movie.sync({
-    force: true
-}).then(function() {
-    // Table created
-    return movie.create(test);
+    force: false
+}).error(function(err, result) {
+	console.error('[ ERROR - ] MOVIE TABLE BUILD ERROR');
+	console.error(err);
+	console.error(result);
+}).done(function() {
+	console.log('[ DONE - ] MOVIE TABLE BUILD');
 });
 */
-movie.create(test).then(function(m) {
-	console.log(m);
-}).catch(function(err) {
-	//console.log(err);
-});
+
+module.exports = function() {
+    this.create = function(record, callback) {
+        movie.create(record)
+            .then(function(result) {
+                console.log('[SUCCESS -] INSERTED AN RECORD INTO MOVIE ' + record['name']);
+                if (!!callback)
+                	callback(result);
+            })
+            .catch(function(err) {
+                console.log('[ERROR -] FAILED TO INSERT AN RECORD INTO MOVIE') + record['name'];
+                console.log(err);
+            });
+    };
+    this.retrieve = function() {
+    	
+    }
+}
