@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:id="@+id/current_task_title"
+        android:layout_height="@dimen/header_height"
+        android:background="@color/purple"
+        android:layout_width="fill_parent">
+
+
+        <TextView
+            android:id="@+id/fragment_home_text"
+            android:layout_width="wrap_content"
+            android:paddingTop="6sp"
+            android:paddingBottom="6sp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cinema"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:textScaleX="1.1"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/place"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_place_24dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="20sp"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/cinema_ad_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="176dp" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cinema_list"
+        android:fastScrollEnabled="true">
+    </ListView>
+
+</LinearLayout>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="ec0fcd29594b3e457eadec0380ad9a512c4d37c7">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_c39c8d3af914dd596eac6b12f16e8e32f63d66f3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/libs/BaiduLBS_Android.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="06bd94312c553f885745ebed12ea79358719a197">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/2/BaiduLBS_Android_a043bb22f267be1f5cc700a97b2e2c8fe3baf8d2/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.getbase/floatingactionbutton/1.10.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f40cf334cdc8b098b74312e21c7741c6eefbeb0e">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.getbase-floatingactionbutton-1.10.1_c57ffaf85d4e5bc8562d1d7db84063ce87cf89e6/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="2fed283fda45387cda87f8c5cc6ba13a899a6064">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_878b796f619fd8db4a1270bb7a7b7a8c79112e52/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="23be6993826b8fd88bbc8d14928bb3b8960d3d4e">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.3.0_12e2c4e30984759805843948a2604180da2a1f6c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1b8e03daaa43fb0a4cd57e378167c2fd70454c1e">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.3.0_5a72ffd6ded8676be1648f3dfa0e179a85dcb3b5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="8a034dd16c0dfd75fe86c52c2cd581592acc684a">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.3.0_9d0c9517e74d8dce34c0b0f11f7e88c3bed57771/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.3.0/jars/libs/internal_impl-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="4da5a4d697d32497c6f85567a5112e62fdfd0676">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.3.0_8e6a909aab5bc27d0e3a93ac0f182524fd805011/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/design/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="f0001e71cea6ae432a00021c6f727f5ef0f3d27e">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.3.0_4eb0fd769a0772bfc81fad580a1a6d6bcbd72813/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/Andriod/extras/android/m2repository/com/android/support/support-annotations/23.3.0/support-annotations-23.3.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="db7791d75a07fef9844d06236c1c59ba7bf6997c">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.3.0_2ef2389b9266baeec03b3aa6aea0fbe8b7726ea9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/2.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="031e8b3ab2df4ab43b1017f84417d7e10dfbb8d2">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-2.0.0_f37ec14eda1407d76e3a570dac8d0f5f03594d89/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="debf30ce0a7560396b6235edef77e447006454c2">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.3.0_267dd67890143bb047bea19c3aa616471b07a011/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="a0b5d60246cd9d4f3f2443611b3b4c25265840b5">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.3.0_8c1c52f93bbcdd7dc9bf9943265aaab22015c17e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.3.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="82ce13fd19cdfde0e392f03c27edeba8d4333648">
+        <dex dex="/Users/guanlu/AndroidStudioProjects/Sekko/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.3.0_1ae5962b63a3c96a8e7a56e25c82ceb221f37147/classes.dex" />
+    </item>
+
+</items>
