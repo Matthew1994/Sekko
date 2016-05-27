@@ -1,6 +1,7 @@
 package com.example.guanlu.sekko;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -91,6 +92,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_login) {
             showLoginDialog(this);
         } else if (id == R.id.nav_list) {
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this,OrderActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 

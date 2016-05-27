@@ -6,11 +6,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -47,6 +50,7 @@ public class TabCinemaOrder extends Fragment {
 
     private List<Map<String,Object>> data;
 
+    private ImageView buttonBg;
 
     public TabCinemaOrder() {
         // Required empty public constructor
@@ -101,6 +105,8 @@ public class TabCinemaOrder extends Fragment {
         button2.setText(df.format(new Date(date.getTime() + (long)1 * 24 * 60 * 60 * 1000)));
         button3.setText(df.format(new Date(date.getTime() + (long)2 * 24 * 60 * 60 * 1000)));
 
+        buttonBg = (ImageView)view.findViewById(R.id.button_bg);
+
 
         //schedule
         data=getData();
@@ -111,13 +117,39 @@ public class TabCinemaOrder extends Fragment {
         return view;
     }
 
+    private int lastButton = 0;
     private View.OnClickListener orderDateListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            for(Button i:buttons) {
+
+
+            /*for(Button i:buttons) {
                 i.setBackgroundColor(0xffA7A7A);
             }
-            v.setBackgroundColor(0xff000000);
+            v.setBackgroundColor(0xff000000);*/
+
+            int pace = buttons.indexOf(v) - lastButton;
+            Toast.makeText(getContext(),buttons.indexOf(v)+" - " +Integer.toString(lastButton)
+                    +" = " +Integer.toString(pace),Toast.LENGTH_SHORT).show();
+            TranslateAnimation animation = null;
+            animation = new TranslateAnimation(lastButton*buttonBg.getWidth(),(lastButton+pace)*buttonBg.getWidth(), buttonBg.getTop(),
+                    buttonBg.getTop());
+
+            /*animation = new TranslateAnimation(0,buttonBg.getWidth(), buttonBg.getTop(),
+                    buttonBg.getTop());*/
+            animation.setDuration(400);
+            animation.setFillAfter(true);
+            animation.setInterpolator(new DecelerateInterpolator());
+            buttonBg.startAnimation(animation);
+
+            lastButton = buttons.indexOf(v);
+
+            for(Button i:buttons) {
+                i.setTextColor(0xFFdedede);
+            }
+            buttons.get(buttons.indexOf(v)).setTextColor(0xFFFFFFFF);
+
+            //buttonBg.layout(0,0,buttonBg.getWidth(),buttonBg.getTop());
         }
     };
 

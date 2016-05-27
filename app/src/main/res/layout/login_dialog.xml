@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageButton
+    <!--<ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-20dp"
-        android:background="@drawable/ic_cancel_black_15dp"/>
+        android:background="@drawable/ic_cancel_black_15dp"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
