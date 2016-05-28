@@ -1,4 +1,4 @@
-package com.example.guanlu.sekko;
+package com.example.guanlu.sekko.model;
 
 import android.graphics.Bitmap;
 

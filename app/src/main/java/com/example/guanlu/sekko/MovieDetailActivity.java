@@ -6,23 +6,20 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+
+import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,6 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     private ImageView detail_img;
 
-    private BitmapProcessor bitmapProcessor = new BitmapProcessor();
 
     private android.support.design.widget.CollapsingToolbarLayout detail_bg;
     private TextView detail_rating;
@@ -93,7 +89,7 @@ public class MovieDetailActivity extends AppCompatActivity {
 
             bitmap = BitmapFactory.decodeResource(this.getResources(), bundle.getInt("img"));
 
-            bg = bitmapProcessor.AfterBlurring(this,bitmap,Width,(int)(Height*0.4));
+            bg = BitmapUtil.AfterBlurring(this,bitmap,Width,(int)(Height*0.4));
 
             BitmapDrawable bd = new BitmapDrawable(bg);
 

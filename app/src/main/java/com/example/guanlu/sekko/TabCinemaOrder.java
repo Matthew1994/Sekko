@@ -2,17 +2,13 @@ package com.example.guanlu.sekko;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
@@ -23,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,7 +40,6 @@ public class TabCinemaOrder extends Fragment {
     private List<Bitmap> GalleryList= new ArrayList<Bitmap>();
 
     private GalleryFlow galleryFlow;
-    private BitmapProcessor bitmapProcessor = new BitmapProcessor();
 
     private List<Button> buttons;
 
@@ -73,7 +70,7 @@ public class TabCinemaOrder extends Fragment {
 
         for(Bitmap bitmap:ImageList) {
             if(bitmap!=null && GalleryList!=null)
-            GalleryList.add(bitmapProcessor.createReflectedBitmap(bitmap));
+            GalleryList.add(BitmapUtil.createReflectedBitmap(bitmap));
         }
         for(Bitmap bitmap:ImageList) {
             bitmap.recycle();

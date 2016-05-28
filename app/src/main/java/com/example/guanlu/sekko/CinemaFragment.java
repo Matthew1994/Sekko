@@ -3,7 +3,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -21,9 +20,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
+
+import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,7 +54,6 @@ public class CinemaFragment extends Fragment {
 
     private View header;
     //pic cut
-    private BitmapProcessor bitmapProcessor = new BitmapProcessor();
 
     private static int Width;
     private static int Height;
@@ -128,10 +126,10 @@ public class CinemaFragment extends Fragment {
         Bitmap bitmap1 = BitmapFactory.decodeResource(mActivity.getResources(),R.drawable.ad1);
         Bitmap bitmap2 = BitmapFactory.decodeResource(mActivity.getResources(),R.drawable.ad2);
 
-        bitmapProcessor.big(bitmap2,Width,(int)(Height*0.3));
+        BitmapUtil.big(bitmap2,Width,(int)(Height*0.3));
 
-        bitmaps.add(bitmapProcessor.big(bitmap1,Width+10,(int)((Width+10)*0.45)));
-        bitmaps.add(bitmapProcessor.big(bitmap2,Width+10,(int)((Width+10)*0.45)));
+        bitmaps.add(BitmapUtil.big(bitmap1,Width+10,(int)((Width+10)*0.45)));
+        bitmaps.add(BitmapUtil.big(bitmap2,Width+10,(int)((Width+10)*0.45)));
 
         bitmap1.recycle();
         bitmap2.recycle();

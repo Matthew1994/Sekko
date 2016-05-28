@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guanlu.sekko.model.Ticket;
+
 import java.util.ArrayList;
 import java.util.List;
 

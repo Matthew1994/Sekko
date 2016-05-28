@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.guanlu.sekko.util.BitmapUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +32,6 @@ public class MovieFragment extends Fragment {
 
     private FragmentActivity mActivity;
 
-    private BitmapProcessor bitmapProcessor = new BitmapProcessor();
 
     private ListView movieList;
     private List<Map<String,Object>> data;
@@ -83,7 +84,7 @@ public class MovieFragment extends Fragment {
         ImageList.add(BitmapFactory.decodeResource(mActivity.getResources(),R.drawable.mr2));
 
         for(Bitmap bitmap:ImageList) {
-            GalleryList.add(bitmapProcessor.createReflectedBitmap(bitmap));
+            GalleryList.add(BitmapUtil.createReflectedBitmap(bitmap));
         }
         for(Bitmap bitmap:ImageList) {
             bitmap.recycle();
