@@ -1,6 +1,6 @@
 # Server settings (ServerProperties)
 server:
-  port: 8000
+  port: 8001
   address: 0.0.0.0
   session:
 #    timeout: 30

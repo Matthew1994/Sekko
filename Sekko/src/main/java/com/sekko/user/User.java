@@ -17,6 +17,7 @@ import org.apache.activemq.artemis.core.security.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
@@ -69,6 +70,10 @@ public class User implements UserDetails {
 	//建立user与movie_comment和cinema_comment的联系
 	// ....
 	
+	static public BCryptPasswordEncoder getPasswordEncoder() {
+		return new BCryptPasswordEncoder(4);
+	}
+	
 	public User() {
 		super();
 		setRole(User.ROLE.user);
@@ -101,7 +106,7 @@ public class User implements UserDetails {
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = getPasswordEncoder().encode(password);
 	}
 	
 	public String getPassword() {

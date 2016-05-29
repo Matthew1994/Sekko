@@ -1,4 +1,4 @@
-package init;
+package com.sekko.init;
 
 import javax.annotation.PostConstruct;
 
