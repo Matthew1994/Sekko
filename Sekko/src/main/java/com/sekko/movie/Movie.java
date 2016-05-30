@@ -23,7 +23,7 @@ public class Movie {
 	@Column(nullable=false)
 	private String type;
 	
-	private String timeAndLanguage;
+	private String timeAndLanguage; //查询数据库的时候驼峰命名会转为下划线
 	
 	private String description;
 	

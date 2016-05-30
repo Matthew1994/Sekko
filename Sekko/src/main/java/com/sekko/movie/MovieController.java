@@ -1,9 +1,14 @@
 package com.sekko.movie;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javassist.expr.Instanceof;
 
 @RestController
 @RequestMapping("/movie")
@@ -12,7 +17,18 @@ public class MovieController {
 	MovieService movieService;
 	
 	@RequestMapping(value={"", "/"}, method = RequestMethod.GET)
-	public Iterable<Movie> getAllMovie() {
-		return movieService.listMovies();
+	public Iterable<Movie> getAllMovie(@RequestParam(value = "type", defaultValue="") String type) {
+		if (type.equals("")) {
+			//return movieService.listMovies();
+			return movieService.getAllMovies();
+		}
+		return movieService.getMovieByType(type);
 	}
+	
+	/*
+	@RequestMapping(value="/", method = RequestMethod.GET)
+	public Iterable<Movie> getMovieByType(@PathParam(value = "type") String type) {
+		return movieService.getMovieByType(type);
+	}
+	*/
 }

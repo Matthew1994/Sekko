@@ -15,6 +15,7 @@ public class Init {
 	
 	@PostConstruct
 	public void initUserData() {
+		/*
 		User admin = new User();
 		admin.setPassword("123456");
 		admin.setUsername("Matthew");
@@ -26,5 +27,6 @@ public class Init {
 		user.setRole(User.ROLE.user);
 		user.setUsername("Amy");
 		userRepository.save(user);
+		*/
 	}
 }

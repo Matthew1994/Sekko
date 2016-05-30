@@ -21,6 +21,14 @@ public class MovieService {
 		return movieRepository.findById(id);
 	}
 	
+	public Iterable<Movie> getAllMovies() {
+		return movieRepository.findAllMovie();
+	}
+	
+	public Iterable<Movie> getMovieByType(String type) {
+		return movieRepository.findByType(type);
+	}
+	
 	/*
 	public Iterable<Movie> getMovieByType(String type) {
 		Iterable<Movie> movies = movieRepository.findAll();

@@ -26,7 +26,7 @@ spring:
     
   jpa:
     hibernate:
-      ddl-auto: "create"
+      ddl-auto: "none" # 可以的取值有 ： none, validate, update, create, create-drop
     show-sql: true
   cache:
     type: redis

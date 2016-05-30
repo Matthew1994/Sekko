@@ -50,7 +50,7 @@ var movie = sequelize.define('movie', {
     },
     onTime: {
         type: Sequelize.STRING,
-        field: 'onTime'
+        field: 'on_time'
     },
     score: {
         type: Sequelize.STRING,
@@ -67,7 +67,7 @@ var movie = sequelize.define('movie', {
     },
     timeAndLanguage: {
         type: Sequelize.STRING,
-        field: 'timeAndLanguage'
+        field: 'time_and_language'
     },
     actors: {
         type: Sequelize.TEXT,
