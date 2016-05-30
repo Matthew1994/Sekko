@@ -21,6 +21,7 @@ public class MovieService {
 		return movieRepository.findById(id);
 	}
 	
+	//这种方式比listMovies更快
 	public Iterable<Movie> getAllMovies() {
 		return movieRepository.findAllMovie();
 	}

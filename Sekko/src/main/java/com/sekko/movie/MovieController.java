@@ -16,15 +16,23 @@ public class MovieController {
 	@Autowired
 	MovieService movieService;
 	
+	//经过ab压力测试发现，getAllMovies()比listMovies()更速度更快
 	@RequestMapping(value={"", "/"}, method = RequestMethod.GET)
-	public Iterable<Movie> getAllMovie(@RequestParam(value = "type", defaultValue="") String type) {
+	public Iterable<Movie> getMovie(@RequestParam(value = "type", defaultValue="") String type) {
 		if (type.equals("")) {
-			//return movieService.listMovies();
 			return movieService.getAllMovies();
 		}
 		return movieService.getMovieByType(type);
 	}
 	
+	@RequestMapping(value={"/test"}, method = RequestMethod.GET)
+	public Iterable<Movie> getAllMovie(@RequestParam(value = "type", defaultValue="") String type) {
+		if (type.equals("")) {
+			return movieService.listMovies();
+		}
+		return movieService.getMovieByType(type);
+	}
+
 	/*
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public Iterable<Movie> getMovieByType(@PathParam(value = "type") String type) {
