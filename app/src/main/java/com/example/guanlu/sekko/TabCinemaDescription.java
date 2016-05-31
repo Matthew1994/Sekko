@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.model.inner.GeoPoint;
 
@@ -42,6 +43,7 @@ public class TabCinemaDescription extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.cinema_description_tab, container, false);
 
         feature =(TextView)view.findViewById(R.id.cinema_feature);
@@ -52,17 +54,17 @@ public class TabCinemaDescription extends Fragment {
         call=(com.getbase.floatingactionbutton.FloatingActionButton)view.findViewById(R.id.menu_call);
         locate=(com.getbase.floatingactionbutton.FloatingActionButton)view.findViewById(R.id.menu_locate);
 
-        feature.setText("影院特色：  所有影厅的豪华座椅均具超宽排距，给您无比宽松舒适的观映环境。");
-        address.setText("详细地址：  天河区 广州市天河路623号天娱广场西塔5楼天河电影城");
-        route.setText("交通信息： 地铁3号线岗顶站A出口，岗顶BRT站");
-        tel.setText("影院电话： 87576722");
+        feature.setText("影院特色： "+CinemaDetailActivity.myCinema.getCinemaFeature());
+        address.setText("详细地址：  "+CinemaDetailActivity.myCinema.getCinemaAddress());
+        route.setText("交通信息： "+CinemaDetailActivity.myCinema.getCinemaRoute());
+        tel.setText("影院电话： "+CinemaDetailActivity.myCinema.getCinemaTel());
 
         //call the cinema
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String tel = "87576722";
-                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel://" + tel));
+
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel://" + CinemaDetailActivity.myCinema.getCinemaTel()));
                 startActivity(intent);
             }
         });

@@ -71,15 +71,13 @@
 
                 </android.support.v7.widget.CardView>
 
+               <!-- <com.baidu.mapapi.map.MapView
+                    android:id="@+id/bmapview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true" />-->
 
 
-               <!-- <com.baidu.mapapi.MapView
-                    android:id="@+id/map_view"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:apiKey="xHtrvaMHm0Sde3CU2Ga1xGlqrs00zQf7"
-                    android:clickable="true"
-                    android:enabled="true" />-->
 
             </LinearLayout>
 

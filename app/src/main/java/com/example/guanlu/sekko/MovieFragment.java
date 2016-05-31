@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.guanlu.sekko.adapter.GalleryAdapter;
+import com.example.guanlu.sekko.adapter.MovieListAdapter;
+import com.example.guanlu.sekko.model.Movie;
 import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.util.ArrayList;
@@ -34,7 +37,7 @@ public class MovieFragment extends Fragment {
 
 
     private ListView movieList;
-    private List<Map<String,Object>> data;
+    private List<Movie> data;
 
     //gallery
     private List<Bitmap> ImageList= new ArrayList<>();
@@ -72,8 +75,10 @@ public class MovieFragment extends Fragment {
 
         movieList=(ListView)mParent.findViewById(R.id.movie_list);
         data = getData();
-        MyMovieAdapter myMovieAdapter = new MyMovieAdapter(mActivity);
-        movieList.setAdapter(myMovieAdapter);
+        /*MyMovieAdapter myMovieAdapter = new MyMovieAdapter(mActivity);
+        movieList.setAdapter(myMovieAdapter);*/
+        MovieListAdapter movieListAdapter = new MovieListAdapter(mActivity,movieList,data);
+        movieList.setAdapter(movieListAdapter);
 
         //gallery
 
@@ -91,156 +96,29 @@ public class MovieFragment extends Fragment {
         }
 
         galleryFlow = (GalleryFlow)mParent.findViewById(R.id.gallery);
-        ImageAdapter imageAdapter = new ImageAdapter(mActivity);
-        galleryFlow.setAdapter(imageAdapter);
+        GalleryAdapter galleryAdapter = new GalleryAdapter(mActivity,GalleryList,data,galleryFlow);
+        galleryFlow.setAdapter(galleryAdapter);
 
 
 
     }
 
-    private List<Map<String,Object>> getData() {
-        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-        Map<String,Object> map;
+    private List<Movie> getData() {
+        List<Movie> list = new ArrayList<Movie>();
 
         for(int i=0; i<2;i++) {
-            map = new HashMap<String,Object>();
-            map.put("img",R.drawable.allegiant);
-            map.put("name","分歧者3: 忠诚世界");
-            map.put("type","类型： 爱情／动作／科幻／冒险");
-            map.put("rating","8.4");
-            list.add(map);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.nightpeacock);
+            Movie movie = new Movie("夜孔雀",Movie.getBytes(bitmap)
+                    ,"9.2","戴思杰/刘亦菲 / 刘烨 / 余少群 / 黎明",
+                    "84分钟/国语","爱情  剧情",
+                    "剧情：法国女留学生埃尔莎在成都爱上了丝绸研究员、吹箫高手马荣 后又在巴黎与马的兄弟、纹身师建民之间产生情感。前者找到了一种符合他理想的蚕——夜孔雀, 后者把蝶化的夜孔雀永远铭刻在艾尔莎的肌肤上。"
+                    ,"2016-05-20  [上映中]");
+            list.add(movie);
         }
-        for(int i=0; i<2;i++) {
-            map = new HashMap<String,Object>();
-            map.put("img",R.drawable.nightpeacock);
-            map.put("name","夜孔雀");
-            map.put("type","类型： 爱情／剧情");
-            map.put("rating","10.0");
-            list.add(map);
-        }
+
         return list;
     }
 
-    static class ViewHolder {
-        public ImageView movieImg;
-        public TextView movieName;
-        public TextView movieType;
-        public TextView movieRating;
-
-    }
-
-    public class MyMovieAdapter extends BaseAdapter {
-        private LayoutInflater mInflater = null;
-
-        private MyMovieAdapter(Context context) {
-            this.mInflater = LayoutInflater.from(context);
-        }
-
-        @Override
-        public int getCount() {
-            return data.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView,ViewGroup parent) {
-            ViewHolder holder = null;
-
-            if(convertView ==null) {
-                holder = new ViewHolder();
-                convertView = mInflater.inflate(R.layout.movie_list_item,null);
-                holder.movieImg=(ImageView)convertView.findViewById(R.id.movie_img);
-                holder.movieName=(TextView) convertView.findViewById(R.id.movie_item_name);
-                holder.movieType=(TextView) convertView.findViewById(R.id.movie_item_type);
-                holder.movieRating=(TextView) convertView.findViewById(R.id.movie_item_rating);
-                convertView.setTag(holder);
-            } else  {
-                holder = (ViewHolder)convertView.getTag();
-            }
-            holder.movieImg.setBackgroundResource((Integer)data.get(position).get("img"));
-            holder.movieName.setText((String)data.get(position).get("name"));
-            holder.movieType.setText((String)data.get(position).get("type"));
-            holder.movieRating.setText((String)data.get(position).get("rating"));
-
-            //click
-            movieList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent();
-                    // intent.setClass(getActivity(), DetailsActivity.class);
-                    intent.setClass(getActivity(), MovieDetailActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("img", (int)data.get(position).get("img"));
-                    bundle.putString("name", (String)data.get(position).get("name"));
-                    bundle.putString("type", (String)data.get(position).get("type"));
-                    bundle.putString("rating", (String)data.get(position).get("rating"));
-                    intent.putExtras(bundle);
-                    //startActivityForResult(intent, 1);
-                    startActivity(intent);
-                }
-            });
-            return convertView;
-        }
-    }
-
-
-    public class ImageAdapter extends BaseAdapter {
-
-        Context mContext;
-
-        public ImageAdapter(Context context) {
-            this.mContext = context;
-        }
-        @Override
-        public int getCount() {
-            return GalleryList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return GalleryList.get(position);
-        }
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ImageView imageView = new ImageView(mContext);
-            imageView.setImageBitmap(GalleryList.get(position));
-            imageView.setLayoutParams(new Gallery.LayoutParams(140, 450));
-            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-
-            galleryFlow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Intent intent = new Intent();
-                    // intent.setClass(getActivity(), DetailsActivity.class);
-                    intent.setClass(getActivity(), MovieDetailActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("img", (int)data.get(position).get("img"));
-                    bundle.putString("name", (String)data.get(position).get("name"));
-                    bundle.putString("type", (String)data.get(position).get("type"));
-                    bundle.putString("rating", (String)data.get(position).get("rating"));
-                    intent.putExtras(bundle);
-                    //startActivityForResult(intent, 1);
-                    startActivity(intent);
-                }
-            });
-
-            return imageView;
-        }
-    }
 
 
     @Override

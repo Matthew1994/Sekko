@@ -17,8 +17,10 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.guanlu.sekko.model.Movie;
 import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.util.ArrayList;
@@ -44,6 +46,8 @@ public class MovieDetailActivity extends AppCompatActivity {
     private List<Fragment> tabList;
     private List<String> titleList;
 
+    public static Movie myMovie;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,15 +68,16 @@ public class MovieDetailActivity extends AppCompatActivity {
         Height = wm.getDefaultDisplay().getHeight();
 
         //process intent data
-        Bundle bundle = this.getIntent().getExtras();
-        if (!bundle.isEmpty()) {
+        myMovie =(Movie)this.getIntent().getSerializableExtra("movie");
+        Toast.makeText(this,myMovie.getMovieShowTime(),Toast.LENGTH_SHORT).show();
+
             // From record and no id but Single telephone Exit
 //            Toast.makeText(this, bundle.getString("name").toString(), Toast.LENGTH_SHORT).show();
 
-            detail_img.setImageResource(bundle.getInt("img"));
+            detail_img.setImageBitmap(Movie.getBitmap(myMovie.getMovieImg()));
 
             String rating ="";
-            rating = bundle.getString(("rating"));
+            rating = myMovie.getMovieRating();
             String result = "";
 
             int num_real = Integer.valueOf(rating.split("\\.")[0]);
@@ -82,12 +87,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             for(int i = 0;i<5-num_real/2;i++) {
                 result+="☆";
             }
-            detail_rating.setText(result+" "+bundle.getString("rating"));
+            detail_rating.setText(result+" "+myMovie.getMovieRating());
 
 
 
 
-            bitmap = BitmapFactory.decodeResource(this.getResources(), bundle.getInt("img"));
+            bitmap = Movie.getBitmap(myMovie.getMovieImg());
 
             bg = BitmapUtil.AfterBlurring(this,bitmap,Width,(int)(Height*0.4));
 
@@ -96,12 +101,12 @@ public class MovieDetailActivity extends AppCompatActivity {
             detail_bg.setBackground(bd);
 
             String title = "";
-            title = bundle.getString("name").toString();
+            title = myMovie.getMovieName();
             setTitle(title);
 
 
 
-        }
+
 
 
         FloatingActionButton fab_return = (FloatingActionButton) findViewById(R.id.fab_return);

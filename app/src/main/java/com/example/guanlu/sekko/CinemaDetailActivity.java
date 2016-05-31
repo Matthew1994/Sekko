@@ -15,6 +15,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.baidu.mapapi.SDKInitializer;
+import com.example.guanlu.sekko.model.Cinema;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,12 +28,17 @@ public class CinemaDetailActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private List<Fragment> tabList;
     private List<String> titleList;
+    public static Cinema myCinema;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+//        SDKInitializer.initialize(getApplicationContext());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cinema_detail);
+        myCinema = (Cinema)this.getIntent().getSerializableExtra("cinema");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,13 +55,12 @@ public class CinemaDetailActivity extends AppCompatActivity {
 
 
         Bundle bundle = this.getIntent().getExtras();
-        if (!bundle.isEmpty()) {
 
-            String title = "";
-            title = bundle.getString("name").toString();
-            setTitle(title);
 
-        }
+        String title = "";
+        title = myCinema.getCinemaName();
+        setTitle(title);
+
 
         tabLayout = (TabLayout)findViewById(R.id.cTtabLayout);
         viewPager = (ViewPager)findViewById(R.id.cinema_viewpager);

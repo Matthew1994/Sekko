@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.example.guanlu.sekko.adapter.CinemaListAdapter;
+import com.example.guanlu.sekko.model.Cinema;
 import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class CinemaFragment extends Fragment {
     private FragmentActivity mActivity;
 
     private ListView cinemaList;
-    private List<Map<String,Object>> data;
+    private List<Cinema> data;
 
     //ids
     private ViewPager viewPager;
@@ -104,10 +106,15 @@ public class CinemaFragment extends Fragment {
         viewPager = (ViewPager)mParent.findViewById(R.id.cinema_ad_viewpager);
 
         data = getData();
+/*
 
         MyCinemaAdapter myCinemaAdapter = new MyCinemaAdapter(mActivity);
 
         cinemaList.setAdapter(myCinemaAdapter);
+*/
+        CinemaListAdapter cinemaListAdapter = new CinemaListAdapter(mActivity,data,cinemaList);
+
+        cinemaList.setAdapter(cinemaListAdapter);
 
       /*  LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         header = layoutInflater.inflate(R.layout.cinema_list_header,cinemaList,false);
@@ -152,113 +159,36 @@ public class CinemaFragment extends Fragment {
 
     }
 
-    private List<Map<String,Object>> getData() {
-        List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-        Map<String,Object> map;
+    private List<Cinema> getData() {
+        List<Cinema> list = new ArrayList<>();
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.cinema1);
+        for(int i=0; i<1;i++) {
 
-        for(int i=0; i<1;i++) {
-            map = new HashMap<String,Object>();
-            map.put("name","广州天河电影城");
-            map.put("address","地址：【天河区】广州市天河路623号天娱广场西塔5楼天河电影城 ");
-            map.put("route","路线：地铁3号线岗顶站A出口，岗顶BRT站");
-            list.add(map);
+            Cinema cinema = new Cinema("广州天河电影城","【天河区】广州市天河路623号天娱广场西塔5楼天河电影城 ",
+                   "地铁3号线岗顶站A出口，岗顶BRT站","所有影厅的豪华座椅均具超宽排距，给您无比宽松舒适的观映环境。",
+                    "87576722",Cinema.getBytes(bitmap));
+            list.add(cinema);
         }
-        for(int i=0; i<1;i++) {
-            map = new HashMap<String,Object>();
-            map.put("name","广州IDC星梦影城");
-            map.put("address","地址：【番禺区】广州市番禺区番禺大道北383号海印又一城4楼 ");
-            map.put("route","路线：地铁：汉溪长隆 ; 公交：地铁接驳9、303、987");
-            list.add(map);
+        for(int i=0; i<2;i++) {
+            Cinema cinema = new Cinema("广州IDC星梦影城","【番禺区】广州市番禺区番禺大道北383号海印又一城4楼",
+                    "地铁：汉溪长隆 ; 公交：地铁接驳9、303、987",
+                    "所有影厅的豪华座椅均具超宽排距，给您无比宽松舒适的观映环境。",
+                    "87576722",Cinema.getBytes(bitmap));
+            list.add(cinema);
+
         }
-        for(int i=0; i<1;i++) {
-            map = new HashMap<String,Object>();
-            map.put("name","华影佳永国际影城");
-            map.put("address","地址：【海珠区】广州海珠区新滘西路西与江南大道南交汇689-709号（单号）枫瀛汇二楼（即荣煦商贸忠心");
-            map.put("route","路线：公交：761路、469路、583路到新滘西路西站下，地铁：东晓南C1出口，坐便民车到荣煦中心站下。");
-            list.add(map);
-        }
-        for(int i=0; i<3;i++) {
-            map = new HashMap<String,Object>();
-            map.put("name","广州IDC星梦影城");
-            map.put("address","地址：【番禺区】广州市番禺区番禺大道北383号海印又一城4楼 ");
-            map.put("route","路线：地铁：汉溪长隆 ; 公交：地铁接驳9、303、987");
-            list.add(map);
+        for(int i=0; i<2;i++) {
+            Cinema cinema = new Cinema("华影佳永国际影城","【海珠区】广州海珠区新滘西路西与江南大道南交汇689-709号（单号）枫瀛汇二楼（即荣煦商贸忠心",
+                    "公交：761路、469路、583路到新滘西路西站下，地铁：东晓南C1出口，坐便民车到荣煦中心站下。",
+                    "所有影厅的豪华座椅均具超宽排距，给您无比宽松舒适的观映环境。",
+                    "87576722",Cinema.getBytes(bitmap));
+            list.add(cinema);
+
         }
         return list;
     }
 
-    static class ViewHolder {
-        public TextView cinemaName;
-        public TextView cinemaAddress;
-        public TextView cinemaRoute;
-    }
 
-
-    public class MyCinemaAdapter extends BaseAdapter {
-        private LayoutInflater mInflater = null;
-
-        private MyCinemaAdapter(Context context) {
-            this.mInflater = LayoutInflater.from(context);
-        }
-
-        @Override
-        public int getCount() {
-            return data.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView,ViewGroup parent) {
-            ViewHolder holder = null;
-
-            if(convertView ==null) {
-                holder = new ViewHolder();
-                convertView = mInflater.inflate(R.layout.cinema_list_item,null);
-                holder.cinemaName=(TextView)convertView.findViewById(R.id.cinema_item_name);
-                holder.cinemaAddress=(TextView)convertView.findViewById(R.id.cinema_item_address);
-                holder.cinemaRoute=(TextView)convertView.findViewById(R.id.cinema_item_route);
-
-                convertView.setTag(holder);
-            } else  {
-                holder = (ViewHolder)convertView.getTag();
-            }
-            holder.cinemaName.setText((String)data.get(position).get("name"));
-            holder.cinemaAddress.setText((String)data.get(position).get("address"));
-            holder.cinemaRoute.setText((String)data.get(position).get("route"));
-
-            //click
-            cinemaList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                    Log.d("----","click");
-                    Intent intent = new Intent();
-                    // intent.setClass(getActivity(), DetailsActivity.class);
-                    intent.setClass(getActivity(), CinemaDetailActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("name", (String)data.get(position).get("name"));
-                    bundle.putString("address", (String)data.get(position).get("address"));
-                    bundle.putString("route", (String)data.get(position).get("route"));
-                    intent.putExtras(bundle);
-                    //startActivityForResult(intent, 1);
-                    startActivity(intent);
-                }
-            });
-            return convertView;
-        }
-    }
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-    }
 
     @Override
     public void onDestroy() {
