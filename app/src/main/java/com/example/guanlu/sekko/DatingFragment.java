@@ -1,10 +1,18 @@
 package com.example.guanlu.sekko;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.guanlu.sekko.adapter.FragAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -16,6 +24,10 @@ public class DatingFragment extends Fragment {
     private FragmentActivity mActivity;
     private View view;
 
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
+    private List<Fragment> fragList;
+    private List<String> titleList;
 
     public static DatingFragment newInstance(int index) {
         DatingFragment f = new DatingFragment();
@@ -42,8 +54,33 @@ public class DatingFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mParent= view;
+        mParent= getView();
         mActivity = getActivity();
+        tabLayout = (TabLayout)mParent.findViewById(R.id.dating_tabLayout);
+        viewPager = (ViewPager)mParent.findViewById(R.id.dating_viewpager);
+
+        FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
+
+        fragList =new ArrayList<Fragment>();
+        fragList.add(new DatingListFragment());
+        fragList.add(new DatingList2Fragment());
+
+        titleList = new ArrayList<String>();
+        titleList.add("邀约墙");
+        titleList.add("照片墙");
+
+
+        FragAdapter adapter = new FragAdapter(fragmentManager, fragList, titleList);
+
+        viewPager.setAdapter(adapter);
+
+
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);//设置tab模式，当前为系统默认模式
+        tabLayout.addTab(tabLayout.newTab().setText(titleList.get(0)));//添加tab选项卡
+        tabLayout.addTab(tabLayout.newTab().setText(titleList.get(1)));//添加tab选项卡
+
+        tabLayout.setupWithViewPager(viewPager);//将TabLayout和ViewPager关联起来。
+        tabLayout.setTabsFromPagerAdapter(adapter);//给Tabs设置适配器
 
     }
 

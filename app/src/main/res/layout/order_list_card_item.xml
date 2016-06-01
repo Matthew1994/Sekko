@@ -94,6 +94,13 @@
                 android:layout_below="@id/order_item_time"
                 android:layout_toRightOf="@id/order_item_num"/>
 
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src = "@drawable/mark_unused"
+                android:id = "@+id/order_item_isused"
+                android:layout_alignParentEnd="true"/>
+
         </RelativeLayout>
 
 

@@ -11,6 +11,21 @@ public class Ticket {
     String label;
     String cinemaName;
 
+    String time;
+    String num;
+    String price;
+    String moviePic;
+
+    boolean isUsed;
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
+    }
+
     public String getMovieName() {
         return movieName;
     }
@@ -68,12 +83,8 @@ public class Ticket {
         this.moviePic = moviePic;
     }
 
-    String time;
-    String num;
-    String price;
-    String moviePic;
 
-    public Ticket(String movieName, String label, String cinemaName, String time, String num, String price, String moviePic) {
+    public Ticket(String movieName, String label, String cinemaName, String time, String num, String price, String moviePic,boolean isUsed) {
         this.movieName = movieName;
         this.label = label;
         this.cinemaName = cinemaName;
@@ -81,5 +92,6 @@ public class Ticket {
         this.num = num;
         this.price = price;
         this.moviePic = moviePic;
+        this.isUsed = isUsed;
     }
 }

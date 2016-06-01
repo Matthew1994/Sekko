@@ -9,6 +9,7 @@
     <dimen name="card_vertical_margin">12dp</dimen>
     <dimen name="card_comment_vertical_margin">8dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="margin_bottom">5dp</dimen>
 
     <!--Contact Details Page Only-->
     <dimen name="app_bar_height">180dp</dimen>

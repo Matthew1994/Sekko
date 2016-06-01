@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.guanlu.sekko.adapter.TicketCardAdapter;
 import com.example.guanlu.sekko.model.Ticket;
 
 import java.util.ArrayList;
@@ -33,93 +34,42 @@ public class OrderActivity extends AppCompatActivity {
 
 //        getActionBar().setTitle("订单");
 
-        recyclerView=(RecyclerView)findViewById(R.id.order_list);
+        recyclerView = (RecyclerView) findViewById(R.id.order_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         //recyclerView.setHasFixedSize(true);
 
         ticketList = getData();
-        CardAdapter cardAdapter = new CardAdapter(this,ticketList);
-        recyclerView.setAdapter(cardAdapter);
+/*        CardAdapter cardAdapter = new CardAdapter(this,ticketList);
+        recyclerView.setAdapter(cardAdapter);*/
+        TicketCardAdapter ticketCardAdapter = new TicketCardAdapter(this, ticketList);
+        recyclerView.setAdapter(ticketCardAdapter);
 
     }
 
     private List<Ticket> getData() {
         List<Ticket> list = new ArrayList<>();
-        for (int i = 0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
+            boolean isUsed = false;
+            if (i % 2 ==0) {
+                isUsed = true;
+            }
+                Ticket ticket = new Ticket(
+                        "夜孔雀", "已完成",
+                        "影院： 金逸珠江国际影院（大学城店）",
+                        "场次：2016-02-27 17:00",
+                        "数量： 2",
+                        "   总价： ¥76",
+                        "nightpeacock.jpg",
+                        isUsed
+                );
 
-            Ticket ticket = new Ticket(
-                    "夜孔雀","已完成",
-                    "影院： 金逸珠江国际影院（大学城店）",
-                    "场次：2016-02-27 17:00",
-                    "数量： 2",
-                    "   总价： ¥76",
-                    "nightpeacock.jpg"
-            );
+                list.add(ticket);
 
-            list.add(ticket);
 
         }
-        Toast.makeText(getBaseContext(),Integer.toString(list.size()),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), Integer.toString(list.size()), Toast.LENGTH_SHORT).show();
         return list;
-    }
-
-    public  class CardAdapter extends  RecyclerView.Adapter<ViewHolder> {
-
-        private List<Ticket> list;
-        private Context context;
-
-        public CardAdapter(Context context, List<Ticket> list) {
-            this.context = context;
-            this.list  =list;
-        }
-
-        @Override
-        public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.order_list_card_item,
-                    viewGroup,false);
-            return new ViewHolder(v);
-        }
-
-        @Override
-        public void onBindViewHolder(ViewHolder viewHolder, int i) {
-            Ticket t = list.get(i);
-            viewHolder.movieName.setText(t.getMovieName());
-            viewHolder.label.setText(t.getLabel());
-            viewHolder.cinemaName.setText(t.getCinemaName());
-            viewHolder.time.setText(t.getTime());
-            viewHolder.num.setText(t.getNum());
-            viewHolder.price.setText(t.getPrice());
-            viewHolder.img.setImageResource(R.drawable.nightpeacock);
-        }
-        @Override
-        public int getItemCount() {
-            return list.size();
-        }
-    }
-
-
-    public class ViewHolder extends  RecyclerView.ViewHolder {
-
-        public TextView movieName;
-        public TextView label;
-        public TextView cinemaName;
-        public TextView time;
-        public TextView num;
-        public TextView price;
-        public ImageView img;
-
-        public ViewHolder(View v) {
-            super(v);
-
-            movieName= (TextView)v.findViewById(R.id.order_item_movie_name);
-            label= (TextView)v.findViewById(R.id.order_item_label);
-            cinemaName= (TextView)v.findViewById(R.id.order_item_cinema_name);
-            time= (TextView)v.findViewById(R.id.order_item_time);
-            num= (TextView)v.findViewById(R.id.order_item_num);
-            price= (TextView)v.findViewById(R.id.order_item_price);
-            img= (ImageView)v.findViewById(R.id.order_item_movie_img);
-        }
     }
 }
 
