@@ -32,11 +32,4 @@ public class MovieController {
 		}
 		return movieService.getMovieByType(type);
 	}
-
-	/*
-	@RequestMapping(value="/", method = RequestMethod.GET)
-	public Iterable<Movie> getMovieByType(@PathParam(value = "type") String type) {
-		return movieService.getMovieByType(type);
-	}
-	*/
 }
