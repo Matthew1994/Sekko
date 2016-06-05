@@ -1,7 +1,14 @@
 var Movie = require('./movie/movie');
-var Dao = require('./movie/Dao.js');
-Dao = new Dao();
 var movie = new Movie();
+var MovieDao = require('./movie/Dao.js');
+var movieDao = new MovieDao();
+
+var Cinema = require('./cinema/cinema');
+var cinema = new Cinema();
+var CinemaDao = require('./cinema/Dao.js');
+var cinemaDao = new CinemaDao();
+
+
 var hotMovieIndexUrl = ["http://film.spider.com.cn/guangzh-film----/",
     "http://film.spider.com.cn/guangzh-film-----2/",
     "http://film.spider.com.cn/guangzh-film-----3/",
@@ -23,8 +30,7 @@ var movieTypeUrl = {
     '恐怖': 'http://film.spider.com.cn/guangzh-film--kb--/',
 };
 
-var Cinema = require('./cinema/cinema');
-var cinema = new Cinema();
+
 
 var cinemaList = ['http://film.spider.com.cn/guangzh-cinema-baiyq----/',
 		'http://film.spider.com.cn/guangzh-cinema-haizq----/',
@@ -36,7 +42,7 @@ var cinemaList = ['http://film.spider.com.cn/guangzh-cinema-baiyq----/',
 		'http://film.spider.com.cn/guangzh-cinema-huadq----/',
 		'http://film.spider.com.cn/guangzh-cinema-huangpq----/',
 		'http://film.spider.com.cn/guangzh-cinema-nansq----/'];
-/*
+
 cinemaList.forEach(function(url) {
 	cinema.getData(url, callback);
 
@@ -45,11 +51,15 @@ cinemaList.forEach(function(url) {
             console.log('[ ERROR - ] FAILED TO GRAB DATA FROM SOURCE WEBSITE');
             return;
         }
-       // console.log(data);
+        data['cinemas'].forEach(function(cinema) {
+            cinemaDao.create(cinema, function(isSuccess, result) {
+
+            });
+        });
     }
 });
-*/
 
+/*
 for (key in movieTypeUrl) {
     movie.getData(movieTypeUrl[key], callback);
 
@@ -59,16 +69,16 @@ for (key in movieTypeUrl) {
             return;
         }
         data['movies'].forEach(function(movie) {
-            Dao.create(movie, function(isSuccess, result) {
+            movieDao.create(movie, function(isSuccess, result) {
 
             });
         });
     }
 }
-
+*/
 
 /*
-Dao.delete({}, function(n) {
+movieDao.delete({}, function(n) {
 	console.log('delete ' + n);
 });
 */

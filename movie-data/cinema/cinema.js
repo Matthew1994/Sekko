@@ -32,9 +32,10 @@ module.exports = function() {
                     try {
 	                    info['movies'] = tmp.match(/(?=热映中@).*(?=@)/)[0].split('@');
 	                    info['movies'].shift();
+                        info['movies'] = info['movies'] + '';
                     }
                     catch(err) {
-                    	info['movies'] = [];
+                    	info['movies'] = [] + '';
                     }
                     that.data.cinemas.push(info);
                 });
