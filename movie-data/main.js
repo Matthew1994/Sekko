@@ -45,6 +45,7 @@ var cinemaList = ['http://film.spider.com.cn/guangzh-cinema-baiyq----/',
 var ontime = 'http://film.spider.com.cn/jquery-second033.html?filmId=201603786108&showDate=2016-06-08&area=guangzhou&type=cinema&regionId=&subwayId=&cinemaId=44003301';
 //var details = 'http://film.spider.com.cn/jquery-second033.html?filmId=' + movieId + '&showDate=' + date + '&area=guangzhou&type=cinema&regionId=&subwayId=&cinemaId=' + cinemaId;
 
+/*
 cinemaList.forEach(function(url) {
 	cinema.getData(url, callback);
 
@@ -60,8 +61,9 @@ cinemaList.forEach(function(url) {
         });
     }
 });
+*/
 
-/*
+
 for (key in movieTypeUrl) {
     movie.getData(movieTypeUrl[key], callback);
 
@@ -77,19 +79,22 @@ for (key in movieTypeUrl) {
         });
     }
 }
-*/
+
+
+
 
 /*
-movieDao.delete({}, function(n) {
-	console.log('delete ' + n);
+movie.getData('http://film.spider.com.cn/guangzh-film--aq--/', function(data) {
+    console.log('into');
+    if (!data['state']) {
+        console.log('[ ERROR - ] FAILED TO GRAB DATA FROM SOURCE WEBSITE');
+        return;
+    }
+    console.log(data);
 });
 */
 /*
-cinema.getData('http://film.spider.com.cn/guangzh-cinema-baiyq----/', function(data) {
-        if (!data['state']) {
-            console.log('[ ERROR - ] FAILED TO GRAB DATA FROM SOURCE WEBSITE');
-            return;
-        }
-        console.log(data);
-    });
+movieDao.delete({}, function(n) {
+    console.log('delete ' + n);
+});
 */

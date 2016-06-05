@@ -33,12 +33,12 @@ module.exports = function() {
 							info['type'].push($(ele).text());
 						});
 						info['type'] = info['type'].toString();
-						info['timeAndLanguage'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').prev()['0'].prev['data'].replace(/[\r\n\t ]/g, '');
-						info['actors'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').text().replace(/[\r\n\t ]/g, '');
+						info['timeAndLanguage'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').prev()['0'].prev['data'].replace(/[\r\n\t ]/g, '').replace(/.*：/, '');
+						info['actors'] = ele.find('.res_movie_text .res_movie_text_in.mt7 .res_movie_dy').text().replace(/[\r\n\t ]/g, '').replace(/.*：/, '');
 						that.data.movies.push(info);
 					}
 					catch(err) {
-
+						console.log(err);
 					}
 				});
 				
