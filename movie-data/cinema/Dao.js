@@ -21,6 +21,11 @@ var sequelize = new Sequelize('sekko', 'root', '123456', {
 
 
 var cinema = sequelize.define('cinema', {
+    cinemaId: {
+        type: Sequelize.STRING,
+        unique: true,
+        field: 'cinema_id'
+    },
     img: {
         type: Sequelize.STRING,
         field: 'img'

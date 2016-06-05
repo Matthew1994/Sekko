@@ -39,6 +39,12 @@ var sequelize = new Sequelize('sekko', 'root', '123456', {
 +-----------------+--------------+------+-----+---------+----------------+
 */
 var movie = sequelize.define('movie', {
+    id: {
+        type: Sequelize.BIGINT,
+        unique: true,
+        primaryKey: true,
+        field: 'id'
+    },
     img: {
         type: Sequelize.STRING,
         field: 'img'

@@ -20,24 +20,28 @@ module.exports = function() {
                 $('.res_cinema > .res_movie_in').each(function(index, ele) {
                     var info = {};
                     var ele = $(ele);
-
-                    info['img'] = ele.find('.res_cinema_pic img').attr('data-original');
-                    info['name'] = ele.find('.res_cinema_text .res_movie_text_in a').attr('title');
-                    info['url'] = ele.find('.res_cinema_text .res_movie_text_in a').attr('href');
-                    
-                    var tmp = ele.find('.res_cinema_text .res_movie_text_in.pt10').eq(2).text().replace(/(\s)+(\r|\n|\t)+/g, "@");
-
-                    info['location'] = tmp.split('@')[0];
-                    info['transport'] = tmp.split('@')[2];
                     try {
-	                    info['movies'] = tmp.match(/(?=热映中@).*(?=@)/)[0].split('@');
-	                    info['movies'].shift();
-                        info['movies'] = info['movies'] + '';
+                        info['img'] = ele.find('.res_cinema_pic img').attr('data-original');
+                        info['name'] = ele.find('.res_cinema_text .res_movie_text_in a').attr('title');
+                        info['url'] = ele.find('.res_cinema_text .res_movie_text_in a').attr('href');
+                        info['cinemaId'] = info['url'].match(/-.*(?=\/)/)[0].replace(/-/g, ''); 
+                        var tmp = ele.find('.res_cinema_text .res_movie_text_in.pt10').eq(2).text().replace(/(\s)+(\r|\n|\t)+/g, "@");
+
+                        info['location'] = tmp.split('@')[0];
+                        info['transport'] = tmp.split('@')[2];
+                        try {
+    	                    info['movies'] = tmp.match(/(?=热映中@).*(?=@)/)[0].split('@');
+    	                    info['movies'].shift();
+                            info['movies'] = info['movies'] + '';
+                        }
+                        catch(err) {
+                        	info['movies'] = [] + '';
+                        }
+                        that.data.cinemas.push(info);
                     }
                     catch(err) {
-                    	info['movies'] = [] + '';
+
                     }
-                    that.data.cinemas.push(info);
                 });
 
             } else {

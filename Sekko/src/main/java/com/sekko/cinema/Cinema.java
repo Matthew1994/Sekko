@@ -27,6 +27,18 @@ public class Cinema {
 	@Column(nullable=false, unique=true)
 	private String url;
 	
+	@NotNull
+	@Column(nullable=false, unique=true)
+	private String cinemaId;
+	
+	public String getCinemaId() {
+		return cinemaId;
+	}
+	
+	public void setCinemaId(String cinemaId) {
+		this.cinemaId = cinemaId;
+	}
+	
 	@Id
 	@NotNull
 	private long id;

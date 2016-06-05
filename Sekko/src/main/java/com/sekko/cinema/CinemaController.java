@@ -13,9 +13,11 @@ public class CinemaController {
 	CinemaService cinemaService;
 	
 	@RequestMapping(value={"", "/"}, method = RequestMethod.GET)
-	public Iterable<Cinema> getCinema(@RequestParam(value = "qu", defaultValue="") String qu) {
-		if (qu.equals(""))
+	public Iterable<Cinema> getCinema(@RequestParam(value = "qu", defaultValue="") String qu, @RequestParam(value = "cinemaId", defaultValue="") String cinemaId) {
+		if (qu.equals("") && cinemaId.equals(""))
 			return cinemaService.getAllCinema();
-		return cinemaService.getCinemaByQu(qu);
+		if (!qu.equals(""))
+			return cinemaService.getCinemaByQu(qu);
+		return cinemaService.getCinemaByCinemaId(cinemaId);
 	}
 }

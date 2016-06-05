@@ -28,4 +28,8 @@ public class CinemaService {
 	public Iterable<Cinema> getCinemaByQu(String qu) {
 		return cinemaRepository.findByQu(qu);
 	}
+	
+	public Iterable<Cinema> getCinemaByCinemaId(String cinemaId) {
+		return cinemaRepository.findByCinemaId(cinemaId);
+	}
 }
