@@ -16,6 +16,10 @@ public class Cinema {
 	private String img;
 	
 	@NotNull
+	@Column(nullable=false)
+	private String coordinate;
+	
+	@NotNull
 	@Column(nullable=false, unique=true)
 	private String location;
 	
@@ -31,6 +35,16 @@ public class Cinema {
 	@Column(nullable=false, unique=true)
 	private String cinemaId;
 	
+	private String tel;
+	
+	public String getTel() {
+		return tel;
+	}
+	
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	
 	public String getCinemaId() {
 		return cinemaId;
 	}
@@ -42,6 +56,14 @@ public class Cinema {
 	@Id
 	@NotNull
 	private long id;
+	
+	public String getCoordinate() {
+		return coordinate;
+	}
+	
+	public void setCoordinate(String coordinate) {
+		this.coordinate = coordinate;
+	}
 	
 	public String getUrl() {
 		return url;

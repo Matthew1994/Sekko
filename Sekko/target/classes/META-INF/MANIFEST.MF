@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: Sekko
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: TSF
+Built-By: Administrator
 Implementation-Vendor-Id: com.sekko
 Build-Jdk: 1.8.0_91
 Created-By: Maven Integration for Eclipse

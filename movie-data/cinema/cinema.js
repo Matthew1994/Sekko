@@ -27,16 +27,8 @@ module.exports = function() {
                         info['cinemaId'] = info['url'].match(/-.*(?=\/)/)[0].replace(/-/g, ''); 
                         var tmp = ele.find('.res_cinema_text .res_movie_text_in.pt10').eq(2).text().replace(/(\s)+(\r|\n|\t)+/g, "@");
 
-                        info['location'] = tmp.split('@')[0];
-                        info['transport'] = tmp.split('@')[2];
-                        try {
-    	                    info['movies'] = tmp.match(/(?=热映中@).*(?=@)/)[0].split('@');
-    	                    info['movies'].shift();
-                            info['movies'] = info['movies'] + '';
-                        }
-                        catch(err) {
-                        	info['movies'] = [] + '';
-                        }
+                        info['location'] = tmp.split('@')[0].replace(/地址：/, '');
+                        info['transport'] = tmp.split('@')[2].replace(/路线：/, '');
                         that.data.cinemas.push(info);
                     }
                     catch(err) {
@@ -51,4 +43,3 @@ module.exports = function() {
         });
     }
 }
-

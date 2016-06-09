@@ -30,6 +30,10 @@ var cinema = sequelize.define('cinema', {
         type: Sequelize.STRING,
         field: 'img'
     },
+    tel: {
+        type: Sequelize.STRING,
+        field: 'tel'
+    },
     name: {
         type: Sequelize.STRING,
         field: 'name',
@@ -47,6 +51,10 @@ var cinema = sequelize.define('cinema', {
     movies: {
         type: Sequelize.TEXT,
         field: 'movies'
+    },
+    coordinate: {
+        type: Sequelize.TEXT,
+        field: 'coordinate'
     },
     url: {
         type: Sequelize.STRING,
