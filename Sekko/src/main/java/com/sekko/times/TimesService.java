@@ -16,10 +16,7 @@ public class TimesService {
 		return timesRepository.findAll();
 	}
 	
-	public Times getTimesById(long id) {
-		return timesRepository.findById(id);
-	}
-	
+
 	//效率更高
 	public Iterable<Times> getAllTimes() {
 		return timesRepository.findAllTimes();
@@ -28,7 +25,7 @@ public class TimesService {
 		return timesRepository.findByThree(date, cinemaId, movieId);
 	}
 	
-	public Iterable<Times> getTimesByTimesId(String timesId) {
-		return timesRepository.findByTimesId(timesId);
+	public Times getTimesById(String id) {
+		return timesRepository.findById(id);
 	}
 }

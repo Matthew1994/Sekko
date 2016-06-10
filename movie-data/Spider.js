@@ -1,4 +1,3 @@
-var request = require('request');
 var Movie = require('./movie/movie');
 var movie = new Movie();
 var MovieDao = require('./movie/Dao');
@@ -12,11 +11,17 @@ var cinemaDao = new CinemaDao();
 var Detail = require('./cinema/details');
 var detail = new Detail();
 
+var Times = require('./times/times');
+var times = new Times();
+
+var TimesDao = require('./times/Dao');
+var timesDao = new TimesDao();
+
 var conf = require('./conf')
 
-var ontime = 'http://film.spider.com.cn/jquery-second033.html?filmId=201603786108&showDate=2016-06-08&area=guangzhou&type=cinema&regionId=&subwayId=&cinemaId=44003301';
+var MAX_DAYS = 3;
 
-var Spider = {
+module.exports = {
     grabMovie: function() {
         var movieTypeUrl = conf['hotMovieIndexUrl'];
         for (key in movieTypeUrl) {
@@ -62,6 +67,38 @@ var Spider = {
             }
         });
     },
+    grabTimes: function(addDay) {
+        cinemaDao.find({}, function(isSuccess, cinemas) {
+            if (isSuccess) {
+                var dates = [];
+                dates.push(getDateStr(addDay||0));
+                cinemas.forEach(function(cinema, index) {
+                    var films = JSON.parse(cinema['movies']);
+                    films = JSON.parse(films);
+                    films.forEach(function(film, index) {
+                        dates.forEach(function(date) {
+                            times.getData(film['filmId'], cinema['cinemaId'], date, function(data) {
+                                if (data.state) {
+                                    data.times.forEach(function(time) {
+                                        if (time) {
+                                            try {
+                                                timesDao.create(time, function(isSuccess, result) {
+
+                                                });
+                                            }
+                                            catch(err){
+
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+                        });
+                    });
+                });
+            }
+        })
+    },
     clearMovie: function() {
         movieDao.delete({}, function(n) {
             console.log('delete ' + n + ' Movie');
@@ -71,32 +108,18 @@ var Spider = {
         cinemaDao.delete({}, function(n) {
             console.log('delete ' + n + ' Cinema');
         });
+    },
+    clearTimes: function() {
+        timesDao.delete({}, function(n) {
+            console.log('delete ' + n + ' Times');
+        });
     }
 }
 
-
-//'http://film.spider.com.cn/jquery-second033.html?filmId=' + movieId + '&showDate=' + date + '&area=guangzhou&type=cinema&regionId=&subwayId=&cinemaId=' + cinemaId;
-
-
-
-//Spider.clearMovie();
-//Spider.grabMovie();
-//Spider.clearCinema();
-//Spider.grabCinema();
+function getDateStr(addDay) {
+    var dd = new Date();
+    dd.setDate(dd.getDate() + addDay);
+    return dd.toJSON().match(/\d{4}-\d{2}-\d{2}/)[0];
+}
 
 
-var movieId = '201603786108';
-var cinemaId = '44015001';
-var date = '2016-06-09';
-var times = 'http://film.spider.com.cn/jquery-second033.html?filmId=' + movieId + '&showDate=' + date + '&area=guangzhou&type=cinema&regionId=null&subwayId=null&cinemaId=' + cinemaId;
-
-request(times, function(err, res, body) {
-    console.log(body);
-})
-/*
-cinemaDao.find({}, function(isSuccess, cinemas) {
-    if (isSuccess) {
-        console.log(cinemas);
-    }
-})
-*/

@@ -15,7 +15,6 @@ public interface TimesRepository extends JpaRepository<Times, Long>{
 	@Query(value="select * from times where movie_id = ?3 and date = ?1 and cinema_id = ?2", nativeQuery=true)
 	Iterable<Times> findByThree(String date, String cinemaId, String movieId);
 	
-	List<Times> findByTimesId(String timesid);
 	
-	Times findById(long id);
+	Times findById(String id);
 }

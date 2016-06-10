@@ -9,46 +9,46 @@ import javax.validation.constraints.NotNull;
 public class Times {
 	@Id
 	@NotNull
-	private long id;
+	private String id;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
-	private String timesId;
-	
-	@NotNull
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String date;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String cinemaId;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String movieId;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
-	private String time;
+	@Column(nullable=false)
+	private String startTime;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
+	private String endTime;
+	
+	@NotNull
+	@Column(nullable=false)
 	private String languageAndEffect;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String playingRoom;
 	
 	@NotNull
-	@Column(nullable=false, unique=true)
+	@Column(nullable=false)
 	private String price;
 	
-	public String getTimesId() {
-		return timesId;
+	public String getEndTime() {
+		return endTime;
 	}
 	
-	public void setTimesId(String timesId) {
-		this.timesId = timesId;
+	public String getStartTime() {
+		return startTime;
 	}
 	
 	public String getCinemaId() {
@@ -75,13 +75,10 @@ public class Times {
 		this.date = date;
 	}
 	
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public String getTime() {
-		return time;
-	}
 	
 	public String getLanguageAndEffect() {
 		return languageAndEffect;
