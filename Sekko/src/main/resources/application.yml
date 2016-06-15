@@ -20,7 +20,7 @@ spring:
   # Use mysql, name of database is "sekko"
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/sekko?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/sekko?useUnicode=true&characterEncoding=utf8&autoReconnect=true
     username: root
     password: 123456
     
