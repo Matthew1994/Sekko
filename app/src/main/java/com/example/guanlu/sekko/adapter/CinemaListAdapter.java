@@ -12,9 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.guanlu.sekko.CinemaDetailActivity;
+import com.example.guanlu.sekko.viewConctroller.CinemaDetailActivity;
 import com.example.guanlu.sekko.R;
-import com.example.guanlu.sekko.model.Cinema;
+import com.example.guanlu.sekko.VO.Cinema;
 
 import java.util.List;
 
@@ -66,8 +66,8 @@ public class CinemaListAdapter extends BaseAdapter{
                 holder = (ViewHolder)convertView.getTag();
             }
             holder.cinemaName.setText(cinemaList.get(position).getCinemaName());
-            holder.cinemaAddress.setText(cinemaList.get(position).getCinemaAddress());
-            holder.cinemaRoute.setText(cinemaList.get(position).getCinemaRoute());
+            holder.cinemaAddress.setText("影院地址: "  +cinemaList.get(position).getCinemaAddress());
+            holder.cinemaRoute.setText("影院路线:  " +cinemaList.get(position).getCinemaRoute());
 
             //click
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

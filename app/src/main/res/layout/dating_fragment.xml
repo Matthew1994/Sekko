@@ -8,7 +8,7 @@
     <RelativeLayout
         android:id="@+id/current_task_title"
         android:layout_height="@dimen/header_height"
-        android:background="@color/purple"
+        android:background="@color/content_white"
         android:layout_width="fill_parent">
 
 
@@ -21,13 +21,17 @@
             android:gravity="center"
             android:text="@string/dating"
             android:textSize="20sp"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:textScaleX="1.1"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/content_bg"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

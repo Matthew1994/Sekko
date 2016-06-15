@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.guanlu.sekko.MovieDetailActivity">
+    tools:context=".viewConctroller.MovieDetailActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="@color/red_dark"
+            app:contentScrim="@color/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <ImageView
@@ -75,8 +75,8 @@
             android:background="@color/content_white"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            app:tabSelectedTextColor="@color/red_dark"
-            app:tabIndicatorColor="@color/red_dark"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorPrimary"
             app:tabIndicatorHeight="4dp"
             />
             <android.support.v4.view.ViewPager
@@ -96,8 +96,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/ic_reply_black_24dp"
-        app:backgroundTint="@color/red"
-        app:rippleColor="@color/red_dark"
+        app:backgroundTint="@color/colorPrimary"
+        app:rippleColor="@color/colorPrimaryDark"
         app:fabSize="mini"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="right|bottom" />

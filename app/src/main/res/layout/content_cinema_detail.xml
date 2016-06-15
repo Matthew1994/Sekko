@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.guanlu.sekko.CinemaDetailActivity"
+    tools:context=".viewConctroller.CinemaDetailActivity"
     tools:showIn="@layout/activity_cinema_detail">
 
     <TextView

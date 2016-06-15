@@ -19,6 +19,8 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,7 +32,7 @@
             android:value="xHtrvaMHm0Sde3CU2Ga1xGlqrs00zQf7" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".viewConctroller.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -40,14 +42,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MovieDetailActivity"
+            android:name=".viewConctroller.MovieDetailActivity"
             android:label="@string/title_activity_movie_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CinemaDetailActivity"
+            android:name=".viewConctroller.CinemaDetailActivity"
             android:label="@string/title_activity_cinema_detail"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OrderActivity"></activity>
+        <activity android:name=".viewConctroller.OrderActivity"></activity>
     </application>
 
 </manifest>

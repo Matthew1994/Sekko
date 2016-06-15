@@ -2,7 +2,6 @@ package com.example.guanlu.sekko.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,12 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
-import com.example.guanlu.sekko.GalleryFlow;
-import com.example.guanlu.sekko.MovieDetailActivity;
-import com.example.guanlu.sekko.model.Movie;
+import com.android.volley.toolbox.ImageLoader;
+import com.example.guanlu.sekko.viewConctroller.GalleryFlow;
+import com.example.guanlu.sekko.viewConctroller.MovieDetailActivity;
+import com.example.guanlu.sekko.cache.ImgCacheManager;
+import com.example.guanlu.sekko.VO.Movie;
+import com.example.guanlu.sekko.util.BitmapUtil;
 
 import java.util.List;
 
@@ -23,26 +25,24 @@ import java.util.List;
 public class GalleryAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<Bitmap> galleryList;
     private List<Movie> movieList;
     private  GalleryFlow galleryFlow;
 
 
-    public GalleryAdapter(Context context,List<Bitmap> galleryList,List<Movie> movieList,GalleryFlow galleryFlow)
+    public GalleryAdapter(Context context,List<Movie> movieList,GalleryFlow galleryFlow)
     {
         this.mContext = context;
-        this.galleryList = galleryList;
         this.galleryFlow = galleryFlow;
         this.movieList = movieList;
     }
     @Override
     public int getCount() {
-        return galleryList.size();
+        return movieList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return galleryList.get(position);
+        return movieList.get(position);
     }
     @Override
     public long getItemId(int position) {
@@ -50,10 +50,15 @@ public class GalleryAdapter extends BaseAdapter {
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView temp = new ImageView(mContext);
+        temp.setVisibility(View.GONE);
         ImageView imageView = new ImageView(mContext);
-        imageView.setImageBitmap(galleryList.get(position));
         imageView.setLayoutParams(new Gallery.LayoutParams(140, 450));
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(temp, android.R.drawable.ic_menu_rotate, android.R.drawable.ic_delete);
+        ImageLoader.ImageContainer container =ImgCacheManager.getLoader().get(movieList.get(position).getMovieImg(), listener);
+        imageView.setImageBitmap(BitmapUtil.createReflectedBitmap(container.getBitmap()));
+        System.out.println("----" + movieList.get(position).getMovieName());
 
 
         galleryFlow.setOnItemClickListener(new AdapterView.OnItemClickListener() {

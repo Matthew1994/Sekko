@@ -130,4 +130,16 @@
     <string name="register">register</string>
     <string name="cancel">cancel</string>
 
+    <string-array name="area">
+        <item> 白云区 </item>
+        <item> 天河区 </item>
+        <item> 海珠区 </item>
+        <item> 番禺区 </item>
+        <item> 荔湾区 </item>
+        <item> 越秀区 </item>
+        <item> 花都区 </item>
+        <item> 黄浦区 </item>
+        <item> 南沙区 </item>
+    </string-array>
+
 </resources>

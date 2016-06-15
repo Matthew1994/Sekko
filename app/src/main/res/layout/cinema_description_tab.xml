@@ -14,7 +14,7 @@
             android:layout_height="fill_parent"
             android:background="@color/content_bg"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:context="com.example.guanlu.sekko.CinemaDetailActivity"
+            tools:context=".viewConctroller.CinemaDetailActivity"
             tools:showIn="@layout/activity_cinema_detail">
 
             <LinearLayout

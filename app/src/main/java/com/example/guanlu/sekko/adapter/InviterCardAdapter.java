@@ -9,8 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guanlu.sekko.R;
-import com.example.guanlu.sekko.model.Inviter;
-import com.example.guanlu.sekko.model.Ticket;
+import com.example.guanlu.sekko.VO.Inviter;
 
 import java.util.List;
 

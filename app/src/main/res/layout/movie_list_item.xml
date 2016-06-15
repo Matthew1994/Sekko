@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/movie_img"
+    android:id="@+id/movie_img"
         android:layout_width="60dp"
         android:layout_margin="10dp"
         android:layout_height="90dp" />

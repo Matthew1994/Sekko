@@ -1,6 +1,8 @@
 package com.example.guanlu.sekko.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.guanlu.sekko.R;
-import com.example.guanlu.sekko.model.Ticket;
+import com.example.guanlu.sekko.VO.Ticket;
 
 import java.util.List;
 
@@ -36,6 +38,10 @@ public  class TicketCardAdapter extends  RecyclerView.Adapter<TicketCardAdapter.
 
     @Override
     public void onBindViewHolder(TicketViewHolder viewHolder, int i) {
+
+        Bitmap used = BitmapFactory.decodeResource(context.getResources(),R.drawable.mark_used);
+        Bitmap unused = BitmapFactory.decodeResource(context.getResources(),R.drawable.mark_unused);
+
         Ticket t = list.get(i);
         viewHolder.movieName.setText(t.getMovieName());
         viewHolder.label.setText(t.getLabel());

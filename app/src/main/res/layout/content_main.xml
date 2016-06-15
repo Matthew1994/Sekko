@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.guanlu.sekko.MainActivity"
+    tools:context=".viewConctroller.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
     <fragment
@@ -14,23 +14,23 @@
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:layout_weight="1"
-        class = "com.example.guanlu.sekko.MovieFragment"/>
+        class = "com.example.guanlu.sekko.viewConctroller.MovieFragment"/>
 
     <fragment
         android:id="@+id/cimema_fragment"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:layout_weight="1"
-        class = "com.example.guanlu.sekko.CinemaFragment"/>
+        class = "com.example.guanlu.sekko.viewConctroller.CinemaFragment"/>
 
     <fragment
         android:id="@+id/dating_fragment"
         android:layout_height="fill_parent"
         android:layout_width="fill_parent"
         android:layout_weight="1"
-        class = "com.example.guanlu.sekko.DatingFragment"/>
+        class = "com.example.guanlu.sekko.viewConctroller.DatingFragment"/>
 
-    <com.example.guanlu.sekko.FragmentIndicator
+    <com.example.guanlu.sekko.viewConctroller.FragmentIndicator
         android:id="@+id/indicator"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
