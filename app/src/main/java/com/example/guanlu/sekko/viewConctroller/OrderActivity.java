@@ -44,26 +44,49 @@ public class OrderActivity extends AppCompatActivity {
 
     private List<Ticket> getData() {
         List<Ticket> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            boolean isUsed = false;
-            if (i % 2 ==0) {
-                isUsed = true;
-            }
-                Ticket ticket = new Ticket(
-                        "夜孔雀", "已完成",
-                        "影院： 金逸珠江国际影院（大学城店）",
-                        "场次：2016-02-27 17:00",
-                        "数量： 2",
-                        "   总价： ¥76",
-                        "nightpeacock.jpg",
-                        isUsed
-                );
 
-                list.add(ticket);
+        boolean isUsed = false;
 
+        Ticket ticket = new Ticket(
+                "夜孔雀", "已完成",
+                "影院： 金逸珠江国际影院（大学城店）",
+                "场次：2016-06-03 17:00",
+                "数量： 2",
+                "   总价： ¥76",
+                R.drawable.nightpeacock,
+                isUsed
+        );
 
-        }
-        Toast.makeText(getBaseContext(), Integer.toString(list.size()), Toast.LENGTH_SHORT).show();
+        list.add(ticket);
+
+        isUsed= true;
+
+        Ticket ticket2 = new Ticket(
+                "愤怒的小鸟", "已完成",
+                "影院： 天河城影院 ",
+                "场次：2016-06-01 13:20",
+                "数量： 1",
+                "   总价： ¥40",
+                R.drawable.angrybird,
+                isUsed
+        );
+
+        list.add(ticket2);
+
+        isUsed= true;
+
+        Ticket ticket3 = new Ticket(
+                "分歧者：忠诚世界", "已完成",
+                "影院： 天河城影院 ",
+                "场次：2016-05-28 22:20",
+                "数量： 2",
+                "   总价： ¥46",
+                R.drawable.allegiant,
+                isUsed
+        );
+
+        list.add(ticket3);
+
         return list;
     }
 }

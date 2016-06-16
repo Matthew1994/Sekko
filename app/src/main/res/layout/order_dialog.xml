@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:divider="@drawable/line"
+        android:padding="10dp"
+
+        android:showDividers="middle">
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_movie_black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/order_dialog_movie_name"
+                android:text="@string/app_name"/>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:id="@+id/order_dialog_movie_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/order_dialog_cinema_name"
+                android:textSize="13sp"
+                android:layout_marginBottom="4dp"
+                android:layout_toRightOf="@id/order_dialog_movie_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/order_dialog_start_time"
+                android:textSize="13sp"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/order_dialog_cinema_name"
+                android:layout_toRightOf="@id/order_dialog_movie_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/order_dialog_num"
+                android:textSize="13sp"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/order_dialog_start_time"
+                android:layout_toRightOf="@id/order_dialog_movie_img"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/order_dialog_price"
+                android:textSize="13sp"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/order_dialog_start_time"
+                android:layout_toRightOf="@id/order_dialog_num"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src = "@drawable/mark_unused"
+                android:id = "@+id/order_item_isused"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:weightSum="1.0"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:textColor="@color/content_white"
+                android:background="@drawable/shape_white"
+                android:id= "@+id/order_dialog_cancel"
+                android:layout_marginRight="10dp"
+                android:text="@string/ccancel"/>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:background="@drawable/shape_white"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/content_white"
+                android:id= "@+id/order_dialog_commit"
+                android:text="@string/commit"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</LinearLayout>

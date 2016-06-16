@@ -97,6 +97,15 @@
 
         </RelativeLayout>
 
+        <TextView
+            android:visibility="gone"
+            android:layout_margin="40dp"
+            android:id="@+id/noSchedule2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/noSchedule"/>
+
         <ListView
             android:layout_width="match_parent"
             android:layout_height="300dp"

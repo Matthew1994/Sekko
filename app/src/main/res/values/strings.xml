@@ -24,10 +24,14 @@
 
     <!-- fake comment -->
 
-    <string name="comment1">近期值得推荐的一部电影，文艺片里还算不沉闷的，毕竟刘亦菲颜值太高，抛去这些，几位主演的表现可圈可点，看得出是一部用心之作</string>
-    <string name="from1">来自：蜘蛛电影票网页版 2016-04-29 00:35:23</string>
-    <string name="comment2">伪文艺，伪悬疑，真色情，真失望，演员的表现力不足，故事展现的也不好</string>
-    <string name="from2">来自：蜘蛛电影票网页版 2016-04-29 00:35:23</string>
+    <string name="comment1">近期值得推荐的一部电影，文艺片里还算不沉闷的，毕竟刘亦菲颜值太高，抛去这些，几位主演的表现可圈可点，看得出是一部用心之作看到熟悉场景在荧幕上焕发恢弘壮美内心充盈感动，变羊和鱼人等小细节也能让玩家会心一笑，高精矮人都事先露脸打个酱油，魔兽庞杂的体系要讲清楚单靠一部电影远远不够，敲碗等续集。片尾没有还原推平暴风城大概是出于照顾非玩家观众的感受，作为LM心满意足。PS：洛萨你..丧子之痛也不能饥不择食啊..。</string>
+    <string name="from1">来自：蜘蛛电影票网页版 2016-06-08 14:42:34</string>
+    <string name="comment2">电影完了以后，有人喊：“有没有回暴风城的？”</string>
+    <string name="from2">来自：蜘蛛电影票网页版 2016-06-08 20:21:35</string>
+    <string name="comment3">传奇电影公司完全没有深入理解暴雪公司对游戏的刻画，整个电影人物稀少，剧情简单枯燥，完全没有描绘出魔兽本来丰富的背景，人物设定，剧情脉络，希望暴雪将来能自己出来拍自己的作品。</string>
+    <string name="comment4">是时候让小时代的粉丝们知道什么才叫脑残粉了。</string>
+    <string name="from3">来自：蜘蛛电影票网页版2016-06-08 13:07:00</string>
+    <string name="from4">来自：蜘蛛电影票网页版2016-06-08 12:01:18</string>
 
 
         <string name="large_text">
@@ -129,6 +133,8 @@
     <string name="login">login</string>
     <string name="register">register</string>
     <string name="cancel">cancel</string>
+    <string name="ccancel">取消</string>
+    <string name="commit">确认</string>
 
     <string-array name="area">
         <item> 白云区 </item>
@@ -141,5 +147,7 @@
         <item> 黄浦区 </item>
         <item> 南沙区 </item>
     </string-array>
+
+    <string name="noSchedule">该影片今日没有安排，看看别的吧 :-)</string>
 
 </resources>

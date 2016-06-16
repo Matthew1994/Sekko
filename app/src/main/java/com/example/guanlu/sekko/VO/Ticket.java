@@ -12,7 +12,7 @@ public class Ticket {
     String time;
     String num;
     String price;
-    String moviePic;
+    int moviePic;
 
     boolean isUsed;
 
@@ -72,17 +72,17 @@ public class Ticket {
         this.price = price;
     }
 
-    public String getMoviePic() {
+    public int getMoviePic() {
         return moviePic;
     }
 
 
-    public void setMoviePic(String moviePic) {
+    public void setMoviePic(int moviePic) {
         this.moviePic = moviePic;
     }
 
 
-    public Ticket(String movieName, String label, String cinemaName, String time, String num, String price, String moviePic,boolean isUsed) {
+    public Ticket(String movieName, String label, String cinemaName, String time, String num, String price, int moviePic,boolean isUsed) {
         this.movieName = movieName;
         this.label = label;
         this.cinemaName = cinemaName;

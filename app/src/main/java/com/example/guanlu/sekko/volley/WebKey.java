@@ -12,6 +12,8 @@ public class WebKey {
     public final static String DATE= "date";
     public final static String CINEMAID= "cinemaId";
     public final static String MOVIEID= "movieId";
+    public final static String AREA= "qu";
+
 
 
 }

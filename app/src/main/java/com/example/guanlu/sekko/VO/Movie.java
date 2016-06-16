@@ -107,6 +107,7 @@ public class Movie implements Serializable {
         this.movieShowTime = movieShowTime;
     }
 
+
     public static byte[] getBytes(Bitmap bitmap){
         //实例化字节数组输出流
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

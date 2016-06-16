@@ -49,6 +49,7 @@ public class DatingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dating_fragment, container,false);
+
         return view;
     }
 
@@ -59,6 +60,8 @@ public class DatingFragment extends Fragment {
         mActivity = getActivity();
         tabLayout = (TabLayout)mParent.findViewById(R.id.dating_tabLayout);
         viewPager = (ViewPager)mParent.findViewById(R.id.dating_viewpager);
+
+
 
         FragmentManager fragmentManager = mActivity.getSupportFragmentManager();
 

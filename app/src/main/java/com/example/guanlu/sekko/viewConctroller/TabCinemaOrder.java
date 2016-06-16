@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.guanlu.sekko.DTO.CinemaBean;
 import com.example.guanlu.sekko.DTO.MovieBean;
@@ -39,6 +40,7 @@ import com.example.guanlu.sekko.adapter.GalleryAdapter;
 import com.example.guanlu.sekko.adapter.MovieListAdapter;
 import com.example.guanlu.sekko.adapter.ScheduleAdapter;
 import com.example.guanlu.sekko.adapter.ScheduleGalleryAdapter;
+import com.example.guanlu.sekko.cache.ImgCacheManager;
 import com.example.guanlu.sekko.util.BitmapUtil;
 import com.example.guanlu.sekko.volley.VolleyManager;
 import com.example.guanlu.sekko.volley.WebKey;
@@ -90,6 +92,9 @@ public class TabCinemaOrder extends Fragment {
     private String paramCinemaId;
 
 
+    private TextView noSchedule;
+
+    private ScheduleAdapter scheduleAdapter;
 
 
     public TabCinemaOrder() {
@@ -104,12 +109,16 @@ public class TabCinemaOrder extends Fragment {
         View view =  inflater.inflate(R.layout.cinema_order_tab, container, false);
 
         //gallery
+        noSchedule = (TextView)view.findViewById(R.id.noSchedule);
+
 
         galleryFlow = (GalleryFlow)view.findViewById(R.id.order_gallery);
         label = (TextView)view.findViewById(R.id.select_move_name);
         movieId = (TextView)view.findViewById(R.id.select_move_id);
 
         newThread.start();
+
+
 
         //button
         buttons = new ArrayList<Button>();
@@ -140,7 +149,6 @@ public class TabCinemaOrder extends Fragment {
 
         //schedule
         schedule = (ListView)view.findViewById(R.id.movie_schedule);
-
 
         //cinemaId
         paramCinemaId = CinemaDetailActivity.myCinema.getCinemaId();
@@ -193,6 +201,8 @@ public class TabCinemaOrder extends Fragment {
     private static final int UPDATE_SCHEDULE = 0;
     private static final int UPDATE_GALLERY = 1;
     private static final int UPDATE_GALLERY2 = 2;
+    private static final int NO_SCHEDULE = 3;
+    private static final int SHOW_DIALOG = 5;
 
     private Handler mHandler = new Handler(){
         @Override
@@ -201,8 +211,9 @@ public class TabCinemaOrder extends Fragment {
                 case UPDATE_GALLERY:
                     ScheduleGalleryAdapter galleryAdapter = new ScheduleGalleryAdapter(getActivity(),movieList,galleryFlow,label,movieId);
                     galleryFlow.setAdapter(galleryAdapter);
-                    label.setText(movieList.get(0).getMovieName()+"  ");
-
+                    label.setText(movieList.get(0).getMovieName());
+                    movieId.setText(movieList.get(0).getMovieId());
+                    getSchedule();
                     Message message = new Message();
                     message.what = UPDATE_GALLERY2;
                     mHandler.sendMessage(message);
@@ -211,11 +222,47 @@ public class TabCinemaOrder extends Fragment {
                 case UPDATE_GALLERY2:
                     galleryAdapter = new ScheduleGalleryAdapter(getActivity(),movieList,galleryFlow,label,movieId);
                     galleryFlow.setAdapter(galleryAdapter);
-                    label.setText(movieList.get(0).getMovieName()+"  ");
+                    label.setText(movieList.get(0).getMovieName());
+                    movieId.setText(movieList.get(0).getMovieId());
+                    getSchedule();
 
                 case UPDATE_SCHEDULE:
-                    ScheduleAdapter scheduleAdapter = new ScheduleAdapter(getContext(), scheduleList);
+                    scheduleAdapter = new ScheduleAdapter(getContext(), scheduleList,schedule,mHandler);
                     schedule.setAdapter(scheduleAdapter);
+                    break;
+
+                case NO_SCHEDULE:
+                    noSchedule.setVisibility(View.VISIBLE);
+                    break;
+
+                case SHOW_DIALOG:
+                    final OrderDialog orderDialog= scheduleAdapter.getOrderDialog();
+                    orderDialog.setCinameName(CinemaDetailActivity.myCinema.getCinemaName());
+                    orderDialog.setMovieName(label.getText().toString());
+                    String temp = orderDialog.getStartTime();
+                    orderDialog.setStartTime(paramDate + "  " + temp);
+                    for(MovieBrief mb : movieList) {
+
+                        if(mb.getMovieName().equals(label.getText().toString())) {
+                            ImageLoader.ImageListener listener = ImageLoader.getImageListener(orderDialog.getImg(),android.R.drawable.ic_menu_rotate, android.R.drawable.ic_delete);
+                            ImgCacheManager.getLoader().get(mb.getMovieImg(), listener);
+                            break;
+                        }
+                    }
+                    orderDialog.setNum("数量：1   ");
+                    orderDialog.setClickListener(new OrderDialog.ClickListenerInterface() {
+                        @Override
+                        public void doCommit() {
+                            orderDialog.dismiss();
+                        }
+
+                        @Override
+                        public void doCancel() {
+                            orderDialog.dismiss();
+
+                        }
+                    });
+                    orderDialog.show();
                     break;
             }
             super.handleMessage(msg);
@@ -290,69 +337,49 @@ public class TabCinemaOrder extends Fragment {
                 @Override
                 public void onResponse(JSONArray response) {
                     System.out.println("json data = " + response);
-                    try {
-                        for (int i = 0; i < response.length(); i++) {
-                            JSONObject jsonObject = response.getJSONObject(i);
-                            System.out.println("json item = " + jsonObject);
-                            Gson gson = new Gson();
-                            java.lang.reflect.Type type = new TypeToken<MovieBean>() {}.getType();
-                            //for test
-                            ScheduleBean scheduleBean = gson.fromJson(jsonObject.toString(),ScheduleBean.class);
-//                            MovieBean movieBean = gson.fromJson(jsonTemp,MovieBean.class);
-                            Schedule schedule= new Schedule(scheduleBean.getTime(),scheduleBean.getDate(),
-                                   scheduleBean.getPlayingRoom(),scheduleBean.getLanguageAndEffect(),scheduleBean.getPrice() );
-                            scheduleList.add(schedule);
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e);
+
+                    if (response.toString().equals("[]")) {
+                        System.out.println("----none----");
+                        Message message = new Message();
+                        message.what = NO_SCHEDULE;
+                        mHandler.sendMessage(message);
                     }
-                }
+                        try {
+                            noSchedule.setVisibility(View.GONE);
+
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                System.out.println("json item = " + jsonObject);
+                                Gson gson = new Gson();
+                                java.lang.reflect.Type type = new TypeToken<MovieBean>() {
+                                }.getType();
+                                //for test
+                                ScheduleBean scheduleBean = gson.fromJson(jsonObject.toString(), ScheduleBean.class);
+//                            MovieBean movieBean = gson.fromJson(jsonTemp,MovieBean.class);
+                                Schedule schedule = new Schedule(scheduleBean.getStartTime(), scheduleBean.getEndTime(),
+                                        scheduleBean.getPlayingRoom(), scheduleBean.getLanguageAndEffect(), scheduleBean.getPrice());
+                                scheduleList.add(schedule);
+                            }
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        } finally {
+                            Message message = new Message();
+                            message.what = UPDATE_SCHEDULE;
+                            mHandler.sendMessage(message);
+                        }
+                    }
             }, new Response.ErrorListener(){
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     System.out.println("发生了一个错误！");
                     error.printStackTrace();
 
-                    try {
-                        List<String> jsonObjs = new ArrayList<>();
-                        jsonObjs.add("{\"id\":1,\"timesId\":\"times1\",\"date\":\"2016-06-05\",\"cinemaId\":\"aaa\",\"movieId\":\"bbb\",\"time\":\"23:40\",\"languageAndEffect\":\"英语3D\",\"playingRoom\":\"3号厅\",\"price\":\"100\"}");
-                        jsonObjs.add("{\"id\":1,\"timesId\":\"times1\",\"date\":\"2016-06-05\",\"cinemaId\":\"aaa\",\"movieId\":\"bbb\",\"time\":\"23:40\",\"languageAndEffect\":\"英语3D\",\"playingRoom\":\"3号厅\",\"price\":\"100\"}");
-                        jsonObjs.add("{\"id\":1,\"timesId\":\"times1\",\"date\":\"2016-06-05\",\"cinemaId\":\"aaa\",\"movieId\":\"bbb\",\"time\":\"23:40\",\"languageAndEffect\":\"英语3D\",\"playingRoom\":\"3号厅\",\"price\":\"100\"}");
-                        jsonObjs.add("{\"id\":1,\"timesId\":\"times1\",\"date\":\"2016-06-05\",\"cinemaId\":\"aaa\",\"movieId\":\"bbb\",\"time\":\"23:40\",\"languageAndEffect\":\"英语3D\",\"playingRoom\":\"3号厅\",\"price\":\"100\"}");
-                        jsonObjs.add("{\"id\":1,\"timesId\":\"times1\",\"date\":\"2016-06-05\",\"cinemaId\":\"aaa\",\"movieId\":\"bbb\",\"time\":\"23:40\",\"languageAndEffect\":\"英语3D\",\"playingRoom\":\"3号厅\",\"price\":\"100\"}");
-                        for (int i = 0; i < jsonObjs.size(); i++) {
-                            Gson gson = new Gson();
-                            ScheduleBean scheduleBean = gson.fromJson(jsonObjs.get(i),ScheduleBean.class);
-                            Schedule schedule= new Schedule(scheduleBean.getTime(),scheduleBean.getDate() + Integer.toString(test),
-                                    scheduleBean.getPlayingRoom(),scheduleBean.getLanguageAndEffect(),scheduleBean.getPrice() );
-                            scheduleList.add(schedule);
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e);
-                    } finally {
-                        Message message = new Message();
-                        message.what = UPDATE_SCHEDULE;
-                        mHandler.sendMessage(message);
-                        test++;
-                    }
                 }
             });
             VolleyManager.getRequestQueue().add(jsonArrayRequest);
         }
     };
 
-
-
-    private List<Schedule> getData() {
-        List<Schedule> list = new ArrayList<Schedule>();
-
-        for(int i=0; i<10;i++) {
-            Schedule schedule = new Schedule("10:50", "12:45散场","3号厅","英语／3D","48元");
-            list.add(schedule);
-        }
-
-        return list;
-    }
 
 
 }

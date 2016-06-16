@@ -49,7 +49,7 @@ public  class TicketCardAdapter extends  RecyclerView.Adapter<TicketCardAdapter.
         viewHolder.time.setText(t.getTime());
         viewHolder.num.setText(t.getNum());
         viewHolder.price.setText(t.getPrice());
-        viewHolder.img.setImageResource(R.drawable.nightpeacock);
+        viewHolder.img.setImageResource(t.getMoviePic());
         if(t.isUsed() == true) {
             viewHolder.isUsed.setImageResource(R.drawable.mark_used);
         } else {

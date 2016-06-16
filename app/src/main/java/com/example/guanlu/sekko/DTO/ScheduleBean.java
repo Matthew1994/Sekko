@@ -5,22 +5,23 @@ package com.example.guanlu.sekko.DTO;
  */
 public class ScheduleBean{
     private String id;
-    private String timesId;
     private String date;
     private String cinemaId;
     private String movieId;
-    private String time;
+    private String startTime;
+    private String endTime;
+
     private String languageAndEffect;
     private String playingRoom;
     private String price;
 
-    public ScheduleBean(String id, String timesId, String date, String cinemaId, String movieId, String time, String languageAndEffect, String playingRoom, String price) {
+    public ScheduleBean(String id, String date, String cinemaId, String movieId, String startTime, String endTime, String languageAndEffect, String playingRoom, String price) {
         this.id = id;
-        this.timesId = timesId;
         this.date = date;
         this.cinemaId = cinemaId;
         this.movieId = movieId;
-        this.time = time;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.languageAndEffect = languageAndEffect;
         this.playingRoom = playingRoom;
         this.price = price;
@@ -32,14 +33,6 @@ public class ScheduleBean{
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getTimesId() {
-        return timesId;
-    }
-
-    public void setTimesId(String timesId) {
-        this.timesId = timesId;
     }
 
     public String getDate() {
@@ -66,12 +59,20 @@ public class ScheduleBean{
         this.movieId = movieId;
     }
 
-    public String getTime() {
-        return time;
+    public String getStartTime() {
+        return startTime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 
     public String getLanguageAndEffect() {
@@ -96,20 +97,5 @@ public class ScheduleBean{
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "ScheduleBean{" +
-                "id='" + id + '\'' +
-                ", timesId='" + timesId + '\'' +
-                ", date='" + date + '\'' +
-                ", cinemaId='" + cinemaId + '\'' +
-                ", movieId='" + movieId + '\'' +
-                ", time='" + time + '\'' +
-                ", languageAndEffect='" + languageAndEffect + '\'' +
-                ", playingRoom='" + playingRoom + '\'' +
-                ", price='" + price + '\'' +
-                '}';
     }
 }

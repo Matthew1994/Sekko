@@ -70,7 +70,6 @@ public class ScheduleGalleryAdapter extends BaseAdapter {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 label.setText(movieList.get(position).getMovieName());
                 movieId.setText(movieList.get(position).getMovieId());
-                System.out.println(movieId.getText().toString());
             }
         });
 

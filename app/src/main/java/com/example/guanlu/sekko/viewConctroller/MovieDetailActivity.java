@@ -71,7 +71,6 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         //process intent data
         myMovie =(Movie)this.getIntent().getSerializableExtra("movie");
-        Toast.makeText(this,myMovie.getMovieShowTime(),Toast.LENGTH_SHORT).show();
 
         //set rating
         String rating ="";
